@@ -1,7 +1,7 @@
 import React from "react";
 
-const vava = () => {
+const Vava = () => {
   return <div>Hello</div>;
 };
 
-export default vava;
+export default Vava;
