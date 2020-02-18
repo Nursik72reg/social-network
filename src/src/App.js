@@ -1,21 +1,18 @@
 import React from "react";
 import "./App.css";
-import Am from "./Tashanov";
-import Vava from "./Texnologes";
+import Header from "./componets/header";
+import Navbar from "./componets/navbar";
+import Profile from "./componets/profile";
 
 const App = () => {
   return (
-    <div>
-      <Vava />
-      <Am />
-      <ui>
-        <li>css</li>
-        <li>html</li>
-        <li>sass</li>
-        <li>js</li>
-      </ui>
+    <div className="container">
+      <Header />
+      <div className="menu">
+        <Navbar />
+        <Profile />
+      </div>
     </div>
   );
 };
-
 export default App;

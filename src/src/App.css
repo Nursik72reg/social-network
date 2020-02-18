@@ -1,0 +1,23 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: red;
+}
+.header {
+  height: 100px;
+  width: 100%;
+  background-color: aquamarine;
+}
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar {
+  width: 200px;
+  height: 550px;
+  background-color: bisque;
+}
+.profile {
+  width: 670px;
+  height: 550px;
+}
