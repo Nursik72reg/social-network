@@ -1,0 +1,12 @@
+.navbar {
+  width: 200px;
+  height: 550px;
+  background-color: bisque;
+}
+.item {
+  font-size: 23px;
+  margin: 20px 0px 0px 20px;
+}
+li {
+  list-style: none;
+}

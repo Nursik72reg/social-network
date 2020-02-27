@@ -1,16 +1,16 @@
 import React from "react";
-
+import clases from "./profile.module.css";
 const Profile = () => {
   return (
-    <div className="profile">
+    <div className={clases.profile}>
       <img></img>
       <div>ава + описание</div>
       <div className="nav">
         My post
-        <div>new post</div>
-        <div>post 1</div>
-        <div>post 2</div>
-        <div>post 2</div>
+        <div className={clases.item}>new post</div>
+        <div className={clases.item}>post 1</div>
+        <div className={clases.item}>post 2</div>
+        <div className={clases.item}>post 2</div>
       </div>
     </div>
   );

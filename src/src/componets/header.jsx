@@ -1,8 +1,9 @@
 import React from "react";
+import clases from "./header.module.css";
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className={clases.header}>
       <div className="row">
         <h3>itProger</h3>
         <img></img>
