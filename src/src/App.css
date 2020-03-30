@@ -1,9 +1,17 @@
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
+
 }
 
 .menu {
   display: flex;
   justify-content: space-between;
+}
+
+.app-wrapper-content{
+  width: 95%;
+  height: 600px;
+  background-color: menu;
+  box-shadow:0 10px 10px rgba(0,0,0,0.22);
 }
