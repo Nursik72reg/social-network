@@ -1,0 +1,24 @@
+.dialogs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialogs_item {
+    border-right: dotted 2px rgba(0,0,0,0.2);
+    width: 49%;
+    height: 600px;
+}
+
+.item,
+.message {
+    font-size: 22px;
+    color: cornflowerblue;
+}
+.item{
+  padding:15px;
+}
+
+.messages {
+    width: 50%;
+    height: 50%;
+}

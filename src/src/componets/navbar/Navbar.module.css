@@ -5,15 +5,24 @@
   z-index: 22;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
 }
-.item {
+.item  {
   font-size: 18px;
   letter-spacing: 3px;
   margin: 20px 0px 0px 20px;
-  color: cornflowerblue;
   padding-top: 15px;
   cursor: pointer;
-}
 
+}
+.a:hover{
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 255, 0.1);
+}
+a{
+  color: cornflowerblue;
+  z-index: 20;
+  text-decoration: none;
+}
 li {
   list-style: none;
 }
