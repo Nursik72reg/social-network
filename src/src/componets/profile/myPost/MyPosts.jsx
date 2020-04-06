@@ -1,33 +1,35 @@
 import React from "react";
 import classes from "./MyPosts.module.css"
 import Posts from "./post/Posts";
+import {addPostsActionCreator, onPostChangeActionCreator} from "../../../redux/Options.";
 
-const MyPosts = () =>{
 
-    let pos = [
-        {name:"Gergii", text:"Как это сдлетьа?"},
-        {name:"Gergii", text:"Как это сдлетьа?"},
-        {name:"Gergii", text:"Как это сдлетьа?"},
-        {name:"Gergii", text:"Как это сдлетьа?"},
-        {name:"Gergii", text:"Как это сдлетьа?"},
-    ];
+const MyPosts = (props) => {
 
-    let p = pos.map(p=><Posts name={p.name} text={p.text}/>)
+    let textArea = React.createRef();
+    let addPosts = () => {
+        props.dispatch(addPostsActionCreator());
+
+    };
+
+    let onPostChange = () => {
+        debugger;
+        let text = textArea.current.value;
+        props.dispatch(onPostChangeActionCreator(text))
+
+    };
+
+    let p = props.pos.map(p => <Posts name={p.name} text={p.text}/>);
     return (
         <div className={classes.nav}>
             <h3>My post</h3>
             <div>
-                <div><textarea></textarea></div>
-                <button>Add post</button>
+                <div><textarea onChange={onPostChange}
+                               ref={textArea}
+                               value={props.newPostText}/></div>
+                <button onClick={addPosts}>Add post</button>
             </div>
             {p}
-            {/*<Posts name={"Georgii"} text = {"Как это сделать ?"}/>
-            <Posts name={"Georgii"} text = {"Как это сделать ?"}/>
-            <Posts name={"Georgii"} text = {"Как это сделать ?"}/>
-            <Posts name={"Georgii"} text = {"Как это сделать ?"}/>
-            <Posts name={"Georgii"} text = {"Как это сделать ?"}/>
-            <Posts name={"Igor"} text = {"Посмотри в Git у меняб там все видно"}/>
-            <Posts name={"Georgii"} text = {"Спасибо"}/>*/}
         </div>
     )
 };

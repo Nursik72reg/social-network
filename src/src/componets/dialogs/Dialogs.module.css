@@ -9,14 +9,9 @@
     height: 600px;
 }
 
-.item,
-.message {
-    font-size: 22px;
-    color: cornflowerblue;
-}
-.item{
-  padding:15px;
-}
+
+
+
 
 .messages {
     width: 50%;
