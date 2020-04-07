@@ -1,32 +1,40 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 
 let store = {
 
-    _state: {
-        profilePage:{},
-        dialogsPage:{},
+    _options: {
+        profilePage:{
+            pos: [
+                {name: "Gergii", text: "Как это сдлетьа?"},
+                {name: "Gergii", text: "Как это сдлетьа?"},
+                {name: "Gergii", text: "Как это сдлетьа?"},
+            ],
+            newPostText: "Здарова мужик",
+        },
+        dialogsPage:{
+            dialogs: [
+                {name: "Dimych", id: 1},
+                {name: "Lena", id: 2},
+                {name: "Pavel", id: 3},
+                {name: "Vickor", id: 4},
+            ],
+            newMessagesText: "",
+            messagess: [
+                {value: "Hello"},
+                {value: "Hello"},
+                {value: "Hello"},
+            ],
+        },
         sidebar:{},
-        dialogs: [
-            {name: "Dimych", id: 1},
-            {name: "Lena", id: 2},
-            {name: "Pavel", id: 3},
-            {name: "Vickor", id: 4},
-        ],
-        newPostText: "Здарова мужик",
-        newMessagesText: "",
-        messagess: [
-            {value: "Hello"},
-            {value: "Hello"},
-            {value: "Hello"},
-        ],
-        pos: [
-            {name: "Gergii", text: "Как это сдлетьа?"},
-            {name: "Gergii", text: "Как это сдлетьа?"},
-            {name: "Gergii", text: "Как это сдлетьа?"},
-        ]
+
+
+
+
     },
     getOptions() {
-        return this._state;
+        return this._options;
     },
     renderDrow() {
         console.log("d")
@@ -37,33 +45,38 @@ let store = {
 
 
     dispatch(active) {
-        debugger;
-        if (active.type === "addPost") {
-            debugger;
+        this._options.profilePage = profileReducer(this._options.profilePage, active);
+        this._options.dialogsPage = dialogsReducer(this._options.dialogsPage, active)
+        this.renderDrow(this._options);
+
+       /* if (active.type === "addPost") {
+
             let newPost = {
                 name: "***",
-                text: this._state.newPostText
+                text: this._options.profilePage.newPostText
             };
 
-            this._state.pos.push(newPost);
-            this._state.newPostText = "";
-            this.renderDrow(this._state);
+            this._options.profilePage.pos.push(newPost);
+            this._options.profilePage.newPostText = "";
+            this.renderDrow(this._options);
         } else if (active.type === "updateNewPostText") {
-            this._state.newPostText = active.newText;
-            this.renderDrow(this._state)
+            this._options.profilePage.newPostText = active.newText;
+
+            this.renderDrow(this._options);
+            debugger;
         } else if (active.type === "addMessages") {
 
             let newText = {
                 value: active.text
             };
-            this._state.messagess.push(newText);
-            this.renderDrow(this._state)
+            this._options.dialogsPage.messagess.push(newText);
+            this.renderDrow(this._options)
 
-        }
+        }*/
     }
 
 };
-
+/*
 export let addPostsActionCreator = () => {
     return {type: "addPost"}
 };
@@ -74,7 +87,7 @@ export let onPostChangeActionCreator = (text) => {
 
 export let  addMessagesActiveCreate = (text)=>{
     return{type:"addMessages", text:text}
-};
+};*/
 
 
 

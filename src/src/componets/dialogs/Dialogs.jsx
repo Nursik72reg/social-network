@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Dialogs.module.css"
 import Message from "./message/Mesage";
 import DialogItem from "./dialogMesseges/DialogItem";
-import {addMessagesActiveCreate} from "../../redux/Options.";
+import {addMessagesActiveCreate} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
     let textArea = React.createRef();

@@ -1,10 +1,12 @@
 import React from "react";
 import classes from "./MyPosts.module.css"
 import Posts from "./post/Posts";
-import {addPostsActionCreator, onPostChangeActionCreator} from "../../../redux/Options.";
+import {addPostsActionCreator, onPostChangeActionCreator} from "../../../redux/profile-reducer";
 
 
 const MyPosts = (props) => {
+
+    let p = props.pos.map(p => <Posts name={p.name} text={p.text}/>);
 
     let textArea = React.createRef();
     let addPosts = () => {
@@ -19,7 +21,6 @@ const MyPosts = (props) => {
 
     };
 
-    let p = props.pos.map(p => <Posts name={p.name} text={p.text}/>);
     return (
         <div className={classes.nav}>
             <h3>My post</h3>
