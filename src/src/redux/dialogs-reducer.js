@@ -1,5 +1,18 @@
-
-const dialogsReducer = (state, active) =>{
+let initialState = {
+    dialogs: [
+        {name: "Dimych", id: 1},
+        {name: "Lena", id: 2},
+        {name: "Pavel", id: 3},
+        {name: "Vickor", id: 4},
+    ],
+    newMessagesText: "",
+    messagess: [
+        {value: "Hello"},
+        {value: "Hello"},
+        {value: "Hello"},
+    ]
+};
+const dialogsReducer = (state = initialState, active) =>{
     if (active.type === "addMessages") {
         let newText = {
             value: active.text

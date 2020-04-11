@@ -1,6 +1,15 @@
+let initialState = {
+    pos: [
+            {name: "Gergii", text: "Как это сдлетьа?"},
+            {name: "Gergii", text: "Как это сдлетьа?"},
+            {name: "Gergii", text: "Как это сдлетьа?"},
+        ],
+        newPostText: "Здарова мужик",
 
+};
 
-const profileReducer = (state, active) =>{
+const profileReducer = (state = initialState, active) =>{
+
     if (active.type === "addPost") {
         let newPost = {
             name: "***",

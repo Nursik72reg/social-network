@@ -3,7 +3,6 @@ import dialogsReducer from "./dialogs-reducer";
 
 
 let store = {
-
     _options: {
         profilePage:{
             pos: [
@@ -33,7 +32,7 @@ let store = {
 
 
     },
-    getOptions() {
+    getState() {
         return this._options;
     },
     renderDrow() {

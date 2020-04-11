@@ -12,9 +12,6 @@ const Dialogs = (props) => {
         props.dispatch(addMessagesActiveCreate(text))
     };
 
-
-
-
     let dial = props.dialogs.map((d) => {
         return <DialogItem name={d.name} id={d.id} url={d.url}/>
     });

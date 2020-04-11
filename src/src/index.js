@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+/*import './index.css';*/
 import App from './App';
-import store from "./redux/Options.";
+import store from "./redux/redux-store"
 import * as serviceWorker from './serviceWorker';
 
 
@@ -15,5 +15,9 @@ export let renderDrow = (options) => {
 
 };
 
-renderDrow(store.getOptions());
-store.subscribe(renderDrow);
+renderDrow(store.getState());
+store.subscribe(()=>{
+    let state = store.getState();
+    renderDrow(state)
+}
+);

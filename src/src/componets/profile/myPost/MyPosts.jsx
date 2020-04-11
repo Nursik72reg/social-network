@@ -6,7 +6,7 @@ import {addPostsActionCreator, onPostChangeActionCreator} from "../../../redux/p
 
 const MyPosts = (props) => {
 
-    let p = props.pos.map(p => <Posts name={p.name} text={p.text}/>);
+
 
     let textArea = React.createRef();
     let addPosts = () => {
@@ -15,12 +15,12 @@ const MyPosts = (props) => {
     };
 
     let onPostChange = () => {
-        debugger;
         let text = textArea.current.value;
         props.dispatch(onPostChangeActionCreator(text))
 
     };
-
+    debugger
+    let p = props.pos.map(p => <Posts name={p.name} text={p.text}/>);
     return (
         <div className={classes.nav}>
             <h3>My post</h3>
