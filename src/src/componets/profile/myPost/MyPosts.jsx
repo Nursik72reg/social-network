@@ -1,22 +1,20 @@
 import React from "react";
 import classes from "./MyPosts.module.css"
 import Posts from "./post/Posts";
-import {addPostsActionCreator, onPostChangeActionCreator} from "../../../redux/profile-reducer";
+
 
 
 const MyPosts = (props) => {
 
-
-
     let textArea = React.createRef();
-    let addPosts = () => {
-        props.dispatch(addPostsActionCreator());
+    let onAddPosts = () => {
+        props.addPost();
 
     };
 
     let onPostChange = () => {
         let text = textArea.current.value;
-        props.dispatch(onPostChangeActionCreator(text))
+        props.updateNewPostText(text)
 
     };
     debugger
@@ -28,7 +26,7 @@ const MyPosts = (props) => {
                 <div><textarea onChange={onPostChange}
                                ref={textArea}
                                value={props.newPostText}/></div>
-                <button onClick={addPosts}>Add post</button>
+                <button onClick={onAddPosts}>Add post</button>
             </div>
             {p}
         </div>

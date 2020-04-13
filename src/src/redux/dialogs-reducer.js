@@ -1,3 +1,6 @@
+const ADD_MESSAGES = "addMessages";
+
+
 let initialState = {
     dialogs: [
         {name: "Dimych", id: 1},
@@ -12,17 +15,28 @@ let initialState = {
         {value: "Hello"},
     ]
 };
-const dialogsReducer = (state = initialState, active) =>{
-    if (active.type === "addMessages") {
-        let newText = {
-            value: active.text
-        };
-        state.messagess.push(newText);
-    }
+const dialogsReducer = (state = initialState, active) => {
+    let copState;
 
+    switch (active.type) {
+        case ADD_MESSAGES:
+        let newMessages = {
+            value:active.text
+        };
+        copState = {...state};
+        copState.messagess = [...state.messagess, newMessages];
+        return copState;
+
+     /* return {
+          ...state,
+          messagess: [...state.messagess,{value: active.text}]
+      }*/
+
+
+}
     return state;
 };
-export let  addMessagesActiveCreate = (text)=>{
-    return{type:"addMessages", text:text}
+export let addMessagesActiveCreate = (text) => {
+    return {type: ADD_MESSAGES, text: text}
 };
 export default dialogsReducer
