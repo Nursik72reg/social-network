@@ -31,8 +31,6 @@ const dialogsReducer = (state = initialState, active) => {
           ...state,
           messagess: [...state.messagess,{value: active.text}]
       }*/
-
-
 }
     return state;
 };
