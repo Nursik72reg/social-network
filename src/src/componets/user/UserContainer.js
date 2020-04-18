@@ -1,16 +1,24 @@
 import React from "react";
 import {connect} from "react-redux";
-import {folowActiveCreate, setUsersActiveCreate, unfolowActiveCreate} from "../../redux/user-reducers";
+import {
+    folowActiveCreate,
+    setCurrentActiveCreate, setTotalUsersActiveCreate,
+    setUsersActiveCreate,
+    unfolowActiveCreate
+} from "../../redux/user-reducers";
 import Users from "./Users";
 
 
 
-let p1 = (state)=>{
+let mapStateToProps = (state)=>{
     return{
-        users:state.usersPage.users
+        users:state.usersPage.users,
+        pageSize:state.usersPage.pageSize,
+        totalUserCount:state.usersPage. totalUserCount,
+        currentPage:state.usersPage.currentPage
     }
 };
-let p2 =(dispatch)=>{
+let mapDispatchToProps =(dispatch)=>{
     return{
         followw: (id)=>{
             dispatch(folowActiveCreate(id))
@@ -18,11 +26,17 @@ let p2 =(dispatch)=>{
         unFollow: (id)=>{
             dispatch(unfolowActiveCreate(id))
         },
-        setUser:(user)=>{
-            dispatch(setUsersActiveCreate(user))
+        setUser:(users)=>{
+            dispatch(setUsersActiveCreate(users))
+        },
+        setCurrentPage:(pageNumber)=>{
+            dispatch(setCurrentActiveCreate(pageNumber))
+         },
+        setTotalUsersCount:(totalCount)=>{
+            dispatch(setTotalUsersActiveCreate(totalCount))
         }
     }
 };
 
 
-export const UserContainer = connect(p1,p2)(Users);
+export const UserContainer = connect( mapStateToProps,mapDispatchToProps)(Users);

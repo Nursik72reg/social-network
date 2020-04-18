@@ -1,50 +1,72 @@
 import React from "react";
 import classes from "./Users.module.css";
 import * as axios from "axios";
+import photos from "../../img/person__img.png"
 
 class Users extends React.Component {
-
-    constructor(props) {
-        super(props);
-       if(this.props.users.length === 0) {
-           alert("dasd")
-           axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-               this.props.setUser(response.data.items);
-           });
-       }
-
+    componentDidMount (){
+        if(this.props.users.length === 0) {
+            alert("ad");
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+                .then(response => {
+                    this.props.setUser(response.data.items);
+                   this.props.setTotalUsersCount(response.data.totalCount)
+                });
+        }
     }
 
 
-    render() {
-        return (
-        <div>
-            {this.props.users.map(m => <div className={classes.container}>
-                <div>
-                    <img className={classes.img}
-                         src="https://avatars.mds.yandex.net/get-pdb/1679978/b5d88035-d527-4b9d-89a9-8bf78d4af1c2/s1200"/>
-                    <div>
-                        {m.followed
-                            ? <button onClick={() => {
-                                this.props.unFollow(m.id)
-                            }}>unfollowed</button>
-                            : <button onClick={() => {
-                                this.props.followw(m.id)
-                            }}>followed</button>
-                        }
 
+    onPageChanged  = (pageNumber)=>{
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUser(response.data.items);
+        });
+
+
+
+    };
+
+    render() {
+        let pageCount = Math.ceil(this.props.totalUserCount/this.props.pageSize);
+        let pages =[];
+        for (let i=1; i<=pageCount;i++){
+            pages.push(i)
+        }
+        return (
+            <div>
+               <div>
+                {pages.map(m=>{
+                    return <span className={this.props.currentPage === m && classes.select}
+                                 onClick={()=>{this.onPageChanged(m)}}>{m}</span>
+                })}
+               </div>
+                {this.props.users.map(m => <div className={classes.container}>
+                    <div>
+                        <img className={classes.img}
+                             src={m.photos.small !=null ? m.photos.small : photos}/>
+                        <div>
+                            {m.followed
+                                ? <button onClick={() => {
+                                    this.props.unFollow(m.id)
+                                }}>unfollowed</button>
+                                : <button onClick={() => {
+                                    this.props.followw(m.id)
+                                }}>followed</button>
+                            }
+
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div className={classes.status}>{m.status}</div>
-                    <div>{m.fullName}</div>
-                </div>
-                <div>
-                    <div>{'m.location.city'}</div>
-                    <div>{'m.location.country'}</div>
-                </div>
-            </div>)}
-        </div>
+                    <div>
+                        <div className={classes.status}>{m.status}</div>
+                        <div>{m.name}</div>
+                    </div>
+                    <div>
+                        <div>{'m.location.city'}</div>
+                        <div>{'m.location.country'}</div>
+                    </div>
+                </div>)}
+            </div>
         )
     }
 }
