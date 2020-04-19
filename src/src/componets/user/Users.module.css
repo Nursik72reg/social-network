@@ -23,3 +23,9 @@
 .select{
     font-weight: bold;
 }
+.number{
+    cursor: pointer;
+}
+.pageSize{
+    cursor: pointer;
+}

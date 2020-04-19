@@ -3,12 +3,13 @@ const UN_FOLLOW = "unfollow";
 const SET_USERS = "setUsers";
 const SET_CURRENT_PAGE = "setCurrentPage";
 const SET_TOTAL_USER_COUNT = "setTotalUserCount";
-
+const SET_IS_FETCHER = "setIsFetcher";
 let initialState = {
     users: [],
-    pageSize: 15,
+    pageSize: 75,
     totalUserCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetcher:true
 };
 
 const userReducers = (state = initialState, action) => {
@@ -46,10 +47,20 @@ const userReducers = (state = initialState, action) => {
                 currentPage: action.curentPage
             }
         }
-        case SET_TOTAL_USER_COUNT:
+
+
+        case SET_TOTAL_USER_COUNT: {
             return {
                 ...state,
                 totalUserCount: action.totalCount
+            }
+        }
+
+
+        case SET_IS_FETCHER :
+            return {
+                ...state,
+                isFetcher: action.fetch
             }
     }
 
@@ -93,6 +104,11 @@ export let setTotalUsersActiveCreate = (totalCount) => {
     }
 
 };
+export let setIsFetcherActiveCreate = (fetch) =>{
+    return{
+        type:SET_IS_FETCHER,
+        fetch
+    }
+}
 
 export default userReducers;
-

@@ -8,11 +8,6 @@ import * as serviceWorker from './serviceWorker';
 
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-
-
-
-export let renderDrow = (options) => {
-
     ReactDOM.render(
         <BrowserRouter>
         <Provider store={store}>
@@ -22,11 +17,6 @@ export let renderDrow = (options) => {
         document.getElementById('root'));
     serviceWorker.unregister();
 
-};
 
-renderDrow(store.getState());
-store.subscribe(()=>{
-    let state = store.getState();
-    renderDrow(state)
-}
-);
+
+
