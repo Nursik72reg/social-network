@@ -17,7 +17,6 @@ const MyPosts = (props) => {
         props.updateNewPostText(text)
 
     };
-    debugger
     let p = props.pos.map(p => <Posts name={p.name} text={p.text}/>);
     return (
         <div className={classes.nav}>

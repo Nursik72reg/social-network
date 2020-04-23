@@ -1,5 +1,6 @@
 const ADD_POST = "addPost";
 const UPDATE_NEW_POST_TEXT = "updateNewPostText";
+const PROFILE_INFO = "profileInfo";
 
 
 let initialState = {
@@ -9,6 +10,7 @@ let initialState = {
         {name: "Gergii", text: "Как это сдлетьа?"},
     ],
     newPostText: "Здарова мужик",
+    profileInfo : null
 
 };
 
@@ -29,6 +31,13 @@ const profileReducer = (state = initialState, active) => {
             copState = {...state};
             copState.newPostText = active.newText;
             return copState
+
+        case PROFILE_INFO:{
+            return {
+                ...state,
+                profileInfo: active.profile
+            }
+        }
     }
     return state;
 };
@@ -44,5 +53,11 @@ export let addPostsActionCreator = () => {
 export let onPostChangeActionCreator = (text) => {
     return {type: "updateNewPostText", newText: text};
 };
+export let setProfileInfo = (profile) =>{
+    return{
+        type: PROFILE_INFO,
+        profile
+    }
+}
 
 export default profileReducer;
