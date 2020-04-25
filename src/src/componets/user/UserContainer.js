@@ -27,7 +27,7 @@ class UsersContainer extends React.Component {
         Api.getUsers(pageNumber, this.props.pageSize)
        .then(response => {
             this.props.setIsFetcher(false);
-            this.props.setTotalUsersCount(response.data.items);
+            this.props.setUser(response.data.items);
         });
     };
 
@@ -35,7 +35,7 @@ class UsersContainer extends React.Component {
         return (<>
                 {this.props.isFetcher ? <Preloader/> : null}
                 <Users onPageChanged={this.onPageChanged}
-                       currentPage={this.props.setCurrentPage}
+                       currentPage={this.props.currentPage}
                        totalUserCount={this.props.totalUserCount}
                        pageSize={this.props.pageSize}
                        users={this.props.users}
