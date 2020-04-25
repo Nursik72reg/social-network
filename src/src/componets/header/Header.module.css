@@ -6,13 +6,22 @@
     background-color: cornflowerblue;
     box-shadow: 0 1px 28px rgba(0, 0, 0, 0.25);
 }
+.row{
+    display: flex;
+    justify-content: space-between;
+}
 
 .item {
-    position: relative;
-    bottom: 5px;
+    position: absolute;
+    bottom: -9px;
     left: 30px;
     padding-top: 30px;
     color: menu;
     font-size: 28px;
     letter-spacing: 7px;
+}
+.btn{
+    position: absolute;
+    top:25px;
+    right: 10px;
 }

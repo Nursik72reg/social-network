@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Users.module.css";
 import photos from "../../img/person__img.png";
 import {NavLink} from "react-router-dom";
+import {Api} from "../../Api/Api";
 
 
 const Users = (props) =>{
@@ -26,13 +27,24 @@ const Users = (props) =>{
                          src={m.photos.small !=null ? m.photos.small : photos}/>
                     </NavLink>
                          <div>
-
                         {m.followed
                             ? <button onClick={() => {
-                                props.unFollow(m.id)
+                               Api.unFollowed(m.id)
+                                    .then(response=>{
+                                        if(response.data.resultCode == 0){
+                                            props.unFollow(m.id)
+                                        }
+                                    })
+
                             }}>unfollowed</button>
                             : <button onClick={() => {
-                                props.followw(m.id)
+                                Api.upFollowed(m.id)
+                                    .then(response=>{
+                                        if(response.data.resultCode == 0){
+                                            props.followw(m.id)
+                                        }
+                                    });
+
                             }}>followed</button>
                         }
 

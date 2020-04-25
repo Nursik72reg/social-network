@@ -5,13 +5,11 @@ import Posts from "./post/Posts";
 
 
 const MyPosts = (props) => {
-
     let textArea = React.createRef();
     let onAddPosts = () => {
         props.addPost();
 
     };
-
     let onPostChange = () => {
         let text = textArea.current.value;
         props.updateNewPostText(text)
