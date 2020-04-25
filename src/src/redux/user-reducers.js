@@ -1,3 +1,5 @@
+import {Api} from "../Api/Api";
+
 const FOLOW_UP = "folowUp";
 const UN_FOLLOW = "unfollow";
 const SET_USERS = "setUsers";
@@ -68,7 +70,7 @@ const userReducers = (state = initialState, action) => {
 };
 
 
-export let folowActiveCreate = (userId) => {
+export const folowActiveCreate = (userId) => {
     return {
         type: FOLOW_UP,
         userId: userId
@@ -76,39 +78,49 @@ export let folowActiveCreate = (userId) => {
 
 };
 
-export let unfolowActiveCreate = (userId) => {
+export const unfolowActiveCreate = (userId) => {
     return {
         type: UN_FOLLOW,
         userId: userId
     }
 
 };
-export let setUsersActiveCreate = (users) => {
+export const setUsersActiveCreate = (users) => {
     return {
         type: SET_USERS,
         users
     }
-
 };
-export let setCurrentActiveCreate = (curentPage) => {
+export const setCurrentActiveCreate = (curentPage) => {
     return {
         type: SET_CURRENT_PAGE,
         curentPage: curentPage
     }
 
 };
-export let setTotalUsersActiveCreate = (totalCount) => {
+export const setTotalUsersActiveCreate = (totalCount) => {
     return {
         type: SET_TOTAL_USER_COUNT,
         totalCount
     }
-
 };
-export let setIsFetcherActiveCreate = (fetch) =>{
+export const setIsFetcherActiveCreate = (fetch) =>{
     return{
         type:SET_IS_FETCHER,
         fetch
     }
-}
+};
+
+
+export const getUserThunk = (currentPage,pageSize)=>{
+    return (dispatch) => {
+        Api.getUsers(currentPage, pageSize)
+            .then(response => {
+                this.props.setIsFetcher(false);
+                this.props.setUser(response.data.items);
+                this.props.setTotalUsersCount(response.data.totalCount)
+            });
+    }
+};
 
 export default userReducers;

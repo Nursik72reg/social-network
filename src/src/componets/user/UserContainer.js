@@ -27,7 +27,7 @@ class UsersContainer extends React.Component {
         Api.getUsers(pageNumber, this.props.pageSize)
        .then(response => {
             this.props.setIsFetcher(false);
-            this.props.setUser(response.data.items);
+            this.props.setTotalUsersCount(response.data.items);
         });
     };
 
@@ -35,7 +35,7 @@ class UsersContainer extends React.Component {
         return (<>
                 {this.props.isFetcher ? <Preloader/> : null}
                 <Users onPageChanged={this.onPageChanged}
-                       currentPage={this.props.currentPage}
+                       currentPage={this.props.setCurrentPage}
                        totalUserCount={this.props.totalUserCount}
                        pageSize={this.props.pageSize}
                        users={this.props.users}
@@ -59,9 +59,9 @@ let mapStateToProps = (state) => {
 export const UserContainer = connect(mapStateToProps,
     {
         followw: folowActiveCreate,
-        unFollow: unfolowActiveCreate,
-        setUser: setUsersActiveCreate,
-        setCurrentPage: setCurrentActiveCreate,
-        setTotalUsersCount: setTotalUsersActiveCreate,
-        setIsFetcher: setIsFetcherActiveCreate
+        unFollow:unfolowActiveCreate,
+        setUser:setUsersActiveCreate,
+        setCurrentPage:setCurrentActiveCreate,
+        setTotalUsersCount:setTotalUsersActiveCreate,
+        setIsFetcher:setIsFetcherActiveCreate
     })(UsersContainer);
