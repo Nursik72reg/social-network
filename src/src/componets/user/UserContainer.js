@@ -1,34 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    folowActiveCreate,
-    setCurrentActiveCreate, setIsFetcherActiveCreate, setTotalUsersActiveCreate,
-    setUsersActiveCreate,
-    unfolowActiveCreate
+    followThunk,
+    getPageUserThunk,
+    getUserThunk,  unFollowThunk,
+
 } from "../../redux/user-reducers";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
-import {Api} from "../../Api/Api";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-      Api.getUsers(this.props.currentPage,this.props.pageSize )
-            .then(response => {
-                this.props.setIsFetcher(false);
-                this.props.setUser(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount)
-            });
-
+     this.props.getUserThunk(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.setIsFetcher(true);
-        Api.getUsers(pageNumber, this.props.pageSize)
-       .then(response => {
-            this.props.setIsFetcher(false);
-            this.props.setUser(response.data.items);
-        });
+    this.props. getPageUserThunk(pageNumber, this.props.pageSize)
     };
 
     render() {
@@ -39,8 +26,10 @@ class UsersContainer extends React.Component {
                        totalUserCount={this.props.totalUserCount}
                        pageSize={this.props.pageSize}
                        users={this.props.users}
-                       unFollow={this.props.unFollow}
-                       followw={this.props.followw}/>
+                       unFollow={this.props.unFollowThunk}
+                       followw={this.props.followThunk}
+                       isDisable={this.props.isDisableBtn}
+                />
             </>
         )
     }
@@ -53,15 +42,14 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUserCount: state.usersPage.totalUserCount,
         currentPage: state.usersPage.currentPage,
-        isFetcher: state.usersPage.isFetcher
+        isFetcher: state.usersPage.isFetcher,
+        isDisableBtn:state.usersPage.isDisable
     }
 };
 export const UserContainer = connect(mapStateToProps,
     {
-        followw: folowActiveCreate,
-        unFollow:unfolowActiveCreate,
-        setUser:setUsersActiveCreate,
-        setCurrentPage:setCurrentActiveCreate,
-        setTotalUsersCount:setTotalUsersActiveCreate,
-        setIsFetcher:setIsFetcherActiveCreate
+        getUserThunk,
+        getPageUserThunk,
+        unFollowThunk,
+        followThunk
     })(UsersContainer);

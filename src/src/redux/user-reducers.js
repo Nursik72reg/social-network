@@ -6,12 +6,14 @@ const SET_USERS = "setUsers";
 const SET_CURRENT_PAGE = "setCurrentPage";
 const SET_TOTAL_USER_COUNT = "setTotalUserCount";
 const SET_IS_FETCHER = "setIsFetcher";
+const BTN_DISABLE = "btnDisable"
 let initialState = {
     users: [],
     pageSize: 75,
     totalUserCount: 0,
     currentPage: 1,
-    isFetcher:true
+    isFetcher:true,
+    isDisable:false
 };
 
 const userReducers = (state = initialState, action) => {
@@ -58,6 +60,12 @@ const userReducers = (state = initialState, action) => {
             }
         }
 
+        case BTN_DISABLE:{
+            return {
+                ...state,
+                isDisable: action.status
+            }
+        }
 
         case SET_IS_FETCHER :
             return {
@@ -110,17 +118,62 @@ export const setIsFetcherActiveCreate = (fetch) =>{
         fetch
     }
 };
+export const isBtnDisable = (status) =>{
+    return{
+        type:BTN_DISABLE,
+        status
+    }
+};
+
 
 
 export const getUserThunk = (currentPage,pageSize)=>{
     return (dispatch) => {
         Api.getUsers(currentPage, pageSize)
             .then(response => {
-                this.props.setIsFetcher(false);
-                this.props.setUser(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount)
+                dispatch(setIsFetcherActiveCreate(false));
+                dispatch(setUsersActiveCreate(response.data.items));
+                dispatch(setTotalUsersActiveCreate(response.data.totalCount))
             });
     }
 };
+
+export const getPageUserThunk =(pageNumber, pageSize)=>{
+    return (dispatch)=>{
+        dispatch(setCurrentActiveCreate(pageNumber));
+        dispatch(setIsFetcherActiveCreate(true));
+        Api.getUsers(pageNumber, pageSize)
+            .then(response => {
+                dispatch(setIsFetcherActiveCreate(false));
+                dispatch(setUsersActiveCreate(response.data.items));
+            });
+    }
+};
+
+export const unFollowThunk = (id) =>{
+    return (dispatch)=>{
+        dispatch(isBtnDisable(true));
+        Api.unFollowed(id)
+            .then(response =>{
+            if(response.data.resultCode == 0){
+                dispatch(unfolowActiveCreate(id))
+            }
+                dispatch(isBtnDisable(false));
+        })
+    }
+};
+export const followThunk = (id) =>{
+    return (dispatch) =>{
+        dispatch(isBtnDisable(true));
+        Api.upFollowed(id)
+            .then(response=>{
+                if(response.data.resultCode==0){
+                    dispatch(folowActiveCreate(id))
+                }
+                dispatch(isBtnDisable(false));
+            })
+
+    }
+}
 
 export default userReducers;

@@ -1,3 +1,5 @@
+import {Api} from "../Api/Api";
+
 const AUTH_USER = "authUser";
 
 
@@ -30,5 +32,20 @@ export const setAuthUser = (userId, login,email)=>{
         authUser:{userId,login,email}
     }
 };
+
+
+export const authMe = ()=> {
+    return (dispatch) => {
+        Api.authMe()
+            .then(response => {
+                debugger
+                if (response.data.resultCode === 0) {
+                    let {id, login, email} = response.data.data;
+                    dispatch(setAuthUser(id, login, email))
+                }
+            })
+    };
+}
+
 
 export default authReducer;

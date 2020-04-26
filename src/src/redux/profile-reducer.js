@@ -1,3 +1,5 @@
+import {Api} from "../Api/Api";
+
 const ADD_POST = "addPost";
 const UPDATE_NEW_POST_TEXT = "updateNewPostText";
 const PROFILE_INFO = "profileInfo";
@@ -43,9 +45,6 @@ const profileReducer = (state = initialState, active) => {
 };
 
 
-
-
-
 export let addPostsActionCreator = () => {
     return {type: ADD_POST}
 };
@@ -58,6 +57,16 @@ export let setProfileInfo = (profile) =>{
         type: PROFILE_INFO,
         profile
     }
+};
+
+export const profilePage = (userId) =>{
+    return (dispatch) =>{
+        Api.profilePage(userId)
+            .then(response=>{
+                dispatch(setProfileInfo(response.data))
+            })
+    }
+
 }
 
 export default profileReducer;

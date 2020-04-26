@@ -28,23 +28,11 @@ const Users = (props) =>{
                     </NavLink>
                          <div>
                         {m.followed
-                            ? <button onClick={() => {
-                               Api.unFollowed(m.id)
-                                    .then(response=>{
-                                        if(response.data.resultCode == 0){
-                                            props.unFollow(m.id)
-                                        }
-                                    })
-
+                            ? <button disabled = {props.isDisable} onClick={() => {
+                                props.unFollow(m.id);
                             }}>unfollowed</button>
-                            : <button onClick={() => {
-                                Api.upFollowed(m.id)
-                                    .then(response=>{
-                                        if(response.data.resultCode == 0){
-                                            props.followw(m.id)
-                                        }
-                                    });
-
+                            : <button disabled={props.isDisable} onClick={() => {
+                                props.followw(m.id);
                             }}>followed</button>
                         }
 
