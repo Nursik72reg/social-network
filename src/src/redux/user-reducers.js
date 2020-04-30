@@ -6,7 +6,7 @@ const SET_USERS = "setUsers";
 const SET_CURRENT_PAGE = "setCurrentPage";
 const SET_TOTAL_USER_COUNT = "setTotalUserCount";
 const SET_IS_FETCHER = "setIsFetcher";
-const BTN_DISABLE = "btnDisable"
+const BTN_DISABLE = "btnDisable";
 let initialState = {
     users: [],
     pageSize: 75,
@@ -127,13 +127,14 @@ export const isBtnDisable = (status) =>{
 
 
 
+
 export const getUserThunk = (currentPage,pageSize)=>{
     return (dispatch) => {
         Api.getUsers(currentPage, pageSize)
             .then(response => {
                 dispatch(setIsFetcherActiveCreate(false));
                 dispatch(setUsersActiveCreate(response.data.items));
-                dispatch(setTotalUsersActiveCreate(response.data.totalCount))
+                dispatch(setTotalUsersActiveCreate(response.data.totalCount ))
             });
     }
 };

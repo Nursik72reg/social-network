@@ -15,7 +15,6 @@ let mapDispatchToProps = (dispatch)=>{
             dispatch(action)
         },
         addPost:()=>{
-            debugger
         dispatch(addPostsActionCreator())
         }
 

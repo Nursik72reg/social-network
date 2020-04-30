@@ -8,14 +8,15 @@ import {
 } from "../../redux/user-reducers";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-     this.props.getUserThunk(this.props.currentPage, this.props.pageSize)
+        this.props.getUserThunk(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-    this.props. getPageUserThunk(pageNumber, this.props.pageSize)
+    this.props.getPageUserThunk(pageNumber, this.props.pageSize)
     };
 
     render() {
@@ -46,10 +47,12 @@ let mapStateToProps = (state) => {
         isDisableBtn:state.usersPage.isDisable
     }
 };
+
+let AuthRedirectComponent = withAuthRedirect(UsersContainer);
 export const UserContainer = connect(mapStateToProps,
     {
         getUserThunk,
         getPageUserThunk,
         unFollowThunk,
         followThunk
-    })(UsersContainer);
+    })( AuthRedirectComponent);

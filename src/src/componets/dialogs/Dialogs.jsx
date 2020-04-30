@@ -4,6 +4,7 @@ import Message from "./message/Mesage";
 import DialogItem from "./dialogMesseges/DialogItem";
 
 
+
 const Dialogs = (props) => {
     let textArea = React.createRef();
 
@@ -20,6 +21,8 @@ const Dialogs = (props) => {
     let mes = props.message.map((m) => {
         return <Message value={m.value}/>
     });
+
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_item}>

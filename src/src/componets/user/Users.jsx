@@ -24,7 +24,7 @@ const Users = (props) =>{
                 <div>
                     <NavLink to = {"/profile/"+m.id}>
                     <img className={classes.img}
-                         src={m.photos.small !=null ? m.photos.small : photos}/>
+                         src={m.photos.small != null ? m.photos.small : photos}/>
                     </NavLink>
                          <div>
                         {m.followed

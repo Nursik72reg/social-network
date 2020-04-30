@@ -11,7 +11,6 @@ let reducers = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: userReducers,
     authUser: authReducer
-
     }
 );
 

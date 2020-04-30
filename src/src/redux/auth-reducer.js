@@ -38,7 +38,6 @@ export const authMe = ()=> {
     return (dispatch) => {
         Api.authMe()
             .then(response => {
-                debugger
                 if (response.data.resultCode === 0) {
                     let {id, login, email} = response.data.data;
                     dispatch(setAuthUser(id, login, email))

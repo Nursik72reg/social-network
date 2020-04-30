@@ -1,8 +1,31 @@
-.img{
-    height: 200px;
-    width: 100%;
+.page_block{
+    padding: 15px;
+    background-color: #ffffff;
+    margin: 15px 0px 0px 10px;
 }
 .contacts{
     display: flex;
     justify-content: space-between;
+}
+.page_info_wrap{
+    text-align: center;
+    width: 540px;
+    margin: 15px 20px 0px 0px;
+    background-color: #fff;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    padding: 15px 20px;
+    border-radius: 4px;
+}
+.page_top{
+    border-bottom: 1px solid #e7e8ec;
+}
+.page_info{
+    padding-top: 10px;
+}
+.page_post{
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    border-radius: 4px;
+    margin: 10px 15px 0px 0px;
+    padding: 15px 20px;
+    background-color: #ffffff;
 }
