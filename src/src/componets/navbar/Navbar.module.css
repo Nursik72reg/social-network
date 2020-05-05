@@ -13,15 +13,21 @@
   cursor: pointer;
 
 }
-.a:hover{
+.blue:hover,
+.dark:hover{
   padding: 5px;
   border-radius: 5px;
   background-color: rgba(0, 0, 255, 0.1);
 }
 a{
-  color: cornflowerblue;
   z-index: 20;
   text-decoration: none;
+}
+.blue{
+  color: cornflowerblue;
+}
+.dark{
+  color: black;
 }
 li {
   list-style: none;

@@ -3,6 +3,7 @@ import {Api} from "../Api/Api";
 const ADD_POST = "addPost";
 const UPDATE_NEW_POST_TEXT = "updateNewPostText";
 const PROFILE_INFO = "profileInfo";
+const GET_STATUS = "getStatus";
 
 
 let initialState = {
@@ -11,8 +12,8 @@ let initialState = {
         {name: "Gergii", text: "Как это сдлетьа?"},
         {name: "Gergii", text: "Как это сдлетьа?"},
     ],
-    newPostText: "Здарова мужик",
-    profileInfo : null
+    profileInfo: null,
+    status: "",
 
 };
 
@@ -20,53 +21,77 @@ const profileReducer = (state = initialState, active) => {
     let copState;
 
     switch (active.type) {
-        case ADD_POST:
-            copState = {...state};
-            let newPost = {
-                name: "***",
-                text: copState.newPostText
-            };
-            copState.pos = [...state.pos, newPost];
-            copState.newPostText = "";
-            return copState;
+        case ADD_POST:{
+            let body = {name:"Sveta", text :active.value};
+            return {
+                ...state,
+                pos:[...state.pos,body],
+
+            }
+        }
+
         case UPDATE_NEW_POST_TEXT:
             copState = {...state};
             copState.newPostText = active.newText;
-            return copState
+            return copState;
 
-        case PROFILE_INFO:{
+        case PROFILE_INFO: {
             return {
                 ...state,
                 profileInfo: active.profile
+            }
+        }
+        case GET_STATUS: {
+            return {
+                ...state,
+                status: active.status
             }
         }
     }
     return state;
 };
 
-
-export let addPostsActionCreator = () => {
-    return {type: ADD_POST}
-};
-
-export let onPostChangeActionCreator = (text) => {
-    return {type: UPDATE_NEW_POST_TEXT , newText: text};
-};
-export let setProfileInfo = (profile) =>{
-    return{
-        type: PROFILE_INFO,
-        profile
-    }
-};
-
-export const profilePage = (userId) =>{
-    return (dispatch) =>{
+export const profilePage = (userId) => {
+    return (dispatch) => {
         Api.profilePage(userId)
-            .then(response=>{
+            .then(response => {
                 dispatch(setProfileInfo(response.data))
             })
     }
+};
+export const getProfileStatus = (id) => {
+    return (dispatch) => {
+        Api.getProfileStatus(id)
+            .then(response => {
+                dispatch(getStatus(response.data))
+            })
+    }
+};
 
-}
+export const putProfileStatus = (status) => {
+    return (dispatch) => {
+        Api.putProfileStatus(status)
+            .then(response => {
+                    dispatch(getStatus(status))
+
+            })
+    }
+
+};
+
+
+export let addPostsActionCreator = (value) => {
+    return {type: ADD_POST, value}
+};
+export let onPostChangeActionCreator = (text) => {
+    return {type: UPDATE_NEW_POST_TEXT, newText: text};
+};
+export let setProfileInfo = (profile) => {
+    return {type: PROFILE_INFO, profile}
+};
+export let getStatus = (status) => {
+    return {type: GET_STATUS, status}
+};
+
 
 export default profileReducer;

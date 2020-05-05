@@ -23,6 +23,12 @@ export let Api = {
     },
     authMe(){
         return instance.get(`auth/me`)
+    },
+    getProfileStatus(id){
+        return instance.get(`profile/status/`+ id)
+    },
+    putProfileStatus(status){
+        return instance.put(`/profile/`, {status})
     }
 };
 

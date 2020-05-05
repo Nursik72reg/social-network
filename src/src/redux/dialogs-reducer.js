@@ -16,25 +16,33 @@ let initialState = {
     ]
 };
 const dialogsReducer = (state = initialState, active) => {
-    let copState;
+/*    let copState = "";
 
     switch (active.type) {
         case ADD_MESSAGES:
         let newMessages = {
             value:active.text
         };
+        debugger
         copState = {...state};
         copState.messagess = [...state.messagess, newMessages];
         return copState;
 
-     /* return {
-          ...state,
-          messagess: [...state.messagess,{value: active.text}]
-      }*/
-}
+}*/
+
+    switch (active.type) {
+        case ADD_MESSAGES:{
+            let body = {value : active.text}
+            return {
+                ...state,
+                messagess:[...state.messagess,body]
+            }
+        }
+    }
     return state;
 };
 export let addMessagesActiveCreate = (text) => {
+    debugger
     return {type: ADD_MESSAGES, text: text}
 };
 export default dialogsReducer
