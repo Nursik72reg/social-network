@@ -5,10 +5,9 @@ import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
     const topik = () => {
-
         if (!props.isTopic) {
             props.switchTopic(true);
-        }else if(props.isTopic) {
+        } else if (props.isTopic) {
             props.switchTopic(false)
         }
     };
@@ -19,9 +18,13 @@ const Header = (props) => {
                     <h3 className={classes.item}>itProger</h3>
                 </div>
                 <div className={classes.btn}>
-                    <button onClick={topik}>Сменить тему</button>
+                    <button className={classes.topik} onClick={topik}>Сменить тему</button>
                     {props.isAuth
-                        ? <button> {props.login}</button>
+                        ? <div>
+                            <span> {props.login}</span>
+                            <button onClick={props.deleteAuthLogin}>Выйти</button>
+
+                        </div>
                         : <NavLink to={"/login"}>
                             <button>Login</button>
                         </NavLink>

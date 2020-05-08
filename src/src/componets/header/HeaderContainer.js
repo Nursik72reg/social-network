@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {authMe, setAuthUser, switchTopic} from "../../redux/auth-reducer";
+import {authMe, deleteAuthLogin, switchTopic} from "../../redux/auth-reducer";
 class HeadersContainer extends React.Component{
     componentDidMount() {
         this.props.authMe();
@@ -9,7 +9,7 @@ class HeadersContainer extends React.Component{
     render() {
         return(
             <Header login = {this.props.login} isAuth = {this.props.isAuth} isTopic = {this.props.isTopic}
-                    switchTopic = {this.props.switchTopic}/>
+                    switchTopic = {this.props.switchTopic} deleteAuthLogin = {this.props.deleteAuthLogin}/>
         )
     }
 }
@@ -20,4 +20,4 @@ const mapStateToProps = (state)=>{
         isTopic: state.authUser.isTopic
     }
 };
-export const HeaderContainer = connect(mapStateToProps, {authMe,switchTopic})(HeadersContainer);
+export const HeaderContainer = connect(mapStateToProps, {authMe,switchTopic,deleteAuthLogin})(HeadersContainer);

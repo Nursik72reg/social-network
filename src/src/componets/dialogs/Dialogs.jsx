@@ -3,11 +3,12 @@ import classes from "./Dialogs.module.css"
 import Message from "./message/Mesage";
 import DialogItem from "./dialogMesseges/DialogItem";
 import {Field, Form, reduxForm} from "redux-form";
-import Textarea from "../common/FormContols";
 import {maxLenght, required} from "../../utils/validators/validators";
+import {Input, Textarea} from "../common/FormContols";
 let maxLenght30 = maxLenght(30);
-const Dialogs = (props) => {
 
+
+const Dialogs = (props) => {
     let dial = props.dialogs.map((d) => {
         return <DialogItem name={d.name} id={d.id} url={d.url}/>
     });
@@ -33,11 +34,10 @@ const Dialogs = (props) => {
     )
 
 };
-
 let DialogsInput = (props)=>{
     return(
         <Form onSubmit={props.handleSubmit}>
-            <Field name="Messages" component={Textarea} placeholder={"Напиши сообщение"}
+            <Field name="Messages" component={Input} placeholder={"Напиши сообщение"}
             validate={[required, maxLenght30]}/>
             <button>Ok</button>
         </Form>

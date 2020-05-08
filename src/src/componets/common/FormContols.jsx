@@ -1,7 +1,9 @@
 import React from "react";
 import classes from "./FormContols.module.css"
 
-const Textarea = ({input, meta}, ...props) => {
+
+
+export const Textarea = ({input, meta}, ...props) => {
     let hasError = meta.error && meta.touched;
     return (
         <div>
@@ -13,4 +15,18 @@ const Textarea = ({input, meta}, ...props) => {
     )
 };
 
-export default Textarea;
+
+export const Input = ({meta,label, input}, ...props) => {
+    let hasError = meta.error && meta.touched;
+    return (
+        <div>
+            <div className={classes.inputDiv}>
+                <input placeholder={label} className={hasError ? classes.input : classes.inputNorm} {...input}{...props}/>
+                <div>
+                    {hasError && <span className={classes.error}>{meta.error}</span>}
+                </div>
+            </div>
+
+        </div>
+    )
+}

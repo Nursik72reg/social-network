@@ -5,7 +5,6 @@ const UPDATE_NEW_POST_TEXT = "updateNewPostText";
 const PROFILE_INFO = "profileInfo";
 const GET_STATUS = "getStatus";
 
-
 let initialState = {
     pos: [
         {name: "Gergii", text: "Как это сдлетьа?"},
@@ -17,12 +16,12 @@ let initialState = {
 
 };
 
-const profileReducer = (state = initialState, active) => {
+const profileReducer = (state = initialState, action) => {
     let copState;
 
-    switch (active.type) {
+    switch (action.type) {
         case ADD_POST:{
-            let body = {name:"Sveta", text :active.value};
+            let body = {name:"Sveta", text :action.value};
             return {
                 ...state,
                 pos:[...state.pos,body],
@@ -32,19 +31,19 @@ const profileReducer = (state = initialState, active) => {
 
         case UPDATE_NEW_POST_TEXT:
             copState = {...state};
-            copState.newPostText = active.newText;
+            copState.newPostText = action.newText;
             return copState;
 
         case PROFILE_INFO: {
             return {
                 ...state,
-                profileInfo: active.profile
+                profileInfo: action.profile
             }
         }
         case GET_STATUS: {
             return {
                 ...state,
-                status: active.status
+                status: action.status
             }
         }
     }
@@ -92,6 +91,7 @@ export let setProfileInfo = (profile) => {
 export let getStatus = (status) => {
     return {type: GET_STATUS, status}
 };
+
 
 
 export default profileReducer;

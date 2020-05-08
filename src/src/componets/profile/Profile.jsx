@@ -5,7 +5,6 @@ const Profile = (props) => {
   return (
     <div>
         <ProfileInfo putProfileStatus = {props.putProfileStatus} profileInfo = {props.profileInfo} status = {props.status}/>
-        {/*<MyPostContainer />*/}
     </div>
   );
 };

@@ -3,7 +3,8 @@ import classes from "./MyPosts.module.css"
 import Posts from "./post/Posts";
 import {Field, Form, reduxForm} from "redux-form";
 import {maxLenght, required} from "../../../utils/validators/validators";
-import Textarea from "../../common/FormContols";
+import {Textarea} from "../../common/FormContols";
+
 
 const maxLenght10 = maxLenght(15);
 

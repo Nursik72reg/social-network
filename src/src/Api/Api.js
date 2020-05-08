@@ -29,6 +29,12 @@ export let Api = {
     },
     putProfileStatus(status){
         return instance.put(`/profile/`, {status})
+    },
+    postAuthLogin(email, password, rememberMe){
+        return instance.post(`/auth/login/`, {email, password, rememberMe})
+    },
+    deletAuthLogin(){
+        return instance.delete(`/auth/login`)
     }
 };
 

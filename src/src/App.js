@@ -7,22 +7,49 @@ import ProfileContainer from "./componets/profile/ProfileContainer";
 import {HeaderContainer} from "./componets/header/HeaderContainer";
 import Login from "./componets/login/Login";
 import DialogsContainer from "./componets/dialogs/DialogsContainer";
-const App = () => {
-    return (
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
+import Redirect from "react-router-dom/es/Redirect";
+import {initializeApp} from "./redux/app-reducer";
+import Preloader from "./componets/common/Preloader";
+
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initializeApp();
+    }
+
+    render() {
+        if(!this.props.initialized){
+            return <Preloader/>
+        }
+        return (
             <div className="container">
                 <HeaderContainer/>
                 <div className="menu">
                     <NavbarContainer/>
                     <div className="app-wrapper-content">
-                        <Route path="/dialogs" component = {()=><DialogsContainer />}/>
-                        <Route path="/profile/:userId?" component={()=><ProfileContainer />}/>
-                        <Route path="/user" component={()=><UserContainer/>}/>
-                        <Route path="/login" component={()=><Login/>}/>
+                        <Route exact path="/" render={() => <Redirect to={"/profile"}/>}/>
+                        <Route path="/dialogs" component={() => <DialogsContainer/>}/>
+                        <Route path="/profile/:userId?" component={() => <ProfileContainer/>}/>
+                        <Route path="/user" component={() => <UserContainer/>}/>
+                        <Route path="/login" component={() => <Login/>}/>
                     </div>
                 </div>
             </div>
-
-    );
+        );
+    }
 };
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        initialized:state.app.initialized
+    }
+}
+
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps , {initializeApp})
+)(App);
+
 
