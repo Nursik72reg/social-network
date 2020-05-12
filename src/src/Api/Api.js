@@ -42,17 +42,3 @@ export let Api = {
 
 
 
-/*
-export const getUsers = (page,count) =>{
-    return instance.get(`/users?page=${page}&count=${count}`)
-};
-export const getPageUsers = (page,count) =>{
-    return instance.get(`/users?page=${page}&count=${count}`)
-};*/
-
-
-/*   axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`,{
-                                   withCredentials:true,
-                                   headers:{
-                                       "API-KEY" : "006b2188-eaae-4c23-a8db-8a54963062c6"}
-                               })*/

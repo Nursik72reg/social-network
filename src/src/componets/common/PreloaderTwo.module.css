@@ -1,0 +1,9 @@
+.container{
+    background-color: white;
+    height: 900px;
+}
+.img{
+    position: absolute;
+    top: 200px;
+    left: 700px;
+}

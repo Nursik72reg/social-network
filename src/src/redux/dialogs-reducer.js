@@ -1,6 +1,4 @@
 const ADD_MESSAGES = "addMessages";
-
-
 let initialState = {
     dialogs: [
         {name: "Dimych", id: 1},

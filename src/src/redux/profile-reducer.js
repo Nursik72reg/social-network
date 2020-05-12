@@ -1,5 +1,4 @@
 import {Api} from "../Api/Api";
-
 const ADD_POST = "addPost";
 const UPDATE_NEW_POST_TEXT = "updateNewPostText";
 const PROFILE_INFO = "profileInfo";
@@ -77,7 +76,6 @@ export const putProfileStatus = (status) => {
     }
 
 };
-
 
 export let addPostsActionCreator = (value) => {
     return {type: ADD_POST, value}

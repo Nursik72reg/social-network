@@ -4,7 +4,7 @@ import Message from "./message/Mesage";
 import DialogItem from "./dialogMesseges/DialogItem";
 import {Field, Form, reduxForm} from "redux-form";
 import {maxLenght, required} from "../../utils/validators/validators";
-import {Input, Textarea} from "../common/FormContols";
+import {Input} from "../common/FormContols";
 let maxLenght30 = maxLenght(30);
 
 
@@ -18,7 +18,7 @@ const Dialogs = (props) => {
     });
 
     let onSubmit = (dataValue) => {
-        props.btnAddClick(dataValue.Messages);
+        props.addMessagesActiveCreate(dataValue.Messages);
     };
 
     return (
@@ -34,9 +34,10 @@ const Dialogs = (props) => {
     )
 
 };
-let DialogsInput = (props)=>{
+
+let DialogsInput = ({handleSubmit})=>{
     return(
-        <Form onSubmit={props.handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <Field name="Messages" component={Input} placeholder={"Напиши сообщение"}
             validate={[required, maxLenght30]}/>
             <button>Ok</button>

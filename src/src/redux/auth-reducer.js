@@ -45,16 +45,14 @@ export const switchTopic = (topic) => {
     }
 };
 
-
 export const authMe = () => {
-    return (dispatch) => {
-        return Api.authMe()
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    let {id, login, email} = response.data.data;
-                    dispatch(setAuthUser(id, login, email, true))
-                }
-            })
+    return async (dispatch) => {
+        let response = await Api.authMe()
+        if (response.data.resultCode === 0) {
+            let {id, login, email} = response.data.data;
+            dispatch(setAuthUser(id, login, email, true))
+        }
+
     };
 };
 export const postAuthLogin = (email, password, rememberMe) => {

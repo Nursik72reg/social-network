@@ -7,8 +7,8 @@ import {
 
 } from "../../redux/user-reducers";
 import Users from "./Users";
-import Preloader from "../common/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import PreloaderTwo from "../common/PreloaderTwo";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -21,7 +21,7 @@ class UsersContainer extends React.Component {
 
     render() {
         return (<>
-                {this.props.isFetcher ? <Preloader/> : null}
+                {this.props.isFetcher ? <PreloaderTwo/> : null}
                 <Users onPageChanged={this.onPageChanged}
                        currentPage={this.props.currentPage}
                        totalUserCount={this.props.totalUserCount}

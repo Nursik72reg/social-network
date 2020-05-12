@@ -8,15 +8,15 @@ import {postAuthLogin} from "../../redux/auth-reducer";
 import loginFon from "../../img/loginFon.png"
 
 const maxLenght35 = maxLenght(35);
+
 let Login = (props) => {
     const onSumbit = (formData) => {
         props.postAuthLogin(formData.login, formData.password, true);
-
     };
     return (
         <div>
             <div>{!props.login ?  <h1 className={classes.items}>Вход в систему !!!</h1>
-                :<h1 className={classes.items}>Добро пожаловать {props.login}</h1>}
+                :<h1 className={classes.items}>Добро пожаловать <div>{props.login}</div></h1>}
 
             </div>
             <div className={classes.container}>
@@ -45,6 +45,7 @@ let FormLogin = (props) => {
             </div>
             <div>
                 <Field name={"password"}
+                       type = "password"
                        component={Input}
                        label = {"Введите пароль"}
                        validate={[required, maxLenght35]}/>

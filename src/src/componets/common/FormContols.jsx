@@ -16,12 +16,12 @@ export const Textarea = ({input, meta}, ...props) => {
 };
 
 
-export const Input = ({meta,label, input}, ...props) => {
+export const Input = ({type, meta,label, input}, ...props) => {
     let hasError = meta.error && meta.touched;
     return (
         <div>
             <div className={classes.inputDiv}>
-                <input placeholder={label} className={hasError ? classes.input : classes.inputNorm} {...input}{...props}/>
+                <input type = {type} placeholder={label} className={hasError ? classes.input : classes.inputNorm} {...input}{...props}/>
                 <div>
                     {hasError && <span className={classes.error}>{meta.error}</span>}
                 </div>

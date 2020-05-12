@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./Message.module.css"
 
-const Message = (props)=>{
+const Message = ({value})=>{
     return (
-        <div className={classes.message}> {props.value} </div>
+        <div className={classes.message}> {value}</div>
     )
 
 };

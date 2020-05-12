@@ -9,9 +9,10 @@ const SET_IS_FETCHER = "setIsFetcher";
 const BTN_DISABLE = "btnDisable";
 let initialState = {
     users: [],
-    pageSize: 75,
+    pageSize: 10,
     totalUserCount: 0,
     currentPage: 1,
+    portionSize : 15,
     isFetcher:true,
     isDisable:false
 };
@@ -125,9 +126,6 @@ export const isBtnDisable = (status) =>{
     }
 };
 
-
-
-
 export const getUserThunk = (currentPage,pageSize)=>{
     return (dispatch) => {
         Api.getUsers(currentPage, pageSize)
@@ -168,7 +166,7 @@ export const followThunk = (id) =>{
         dispatch(isBtnDisable(true));
         Api.upFollowed(id)
             .then(response=>{
-                if(response.data.resultCode==0){
+                if(response.data.resultCode ==0){
                     dispatch(folowActiveCreate(id))
                 }
                 dispatch(isBtnDisable(false));
